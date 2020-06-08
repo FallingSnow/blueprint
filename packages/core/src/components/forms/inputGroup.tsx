@@ -126,16 +126,23 @@ export class InputGroup extends AbstractPureComponent2<IInputGroupProps & HTMLIn
             paddingRight: this.state.rightElementWidth,
         };
 
+        const element = inputElement ? <inputElement
+                type="text"
+                {...removeNonHTMLProps(this.props)}
+                className={Classes.INPUT}
+                ref={this.props.inputRef}
+                style={style}/> :
+            <input
+                type="text"
+                {...removeNonHTMLProps(this.props)}
+                className={Classes.INPUT}
+                ref={this.props.inputRef}
+                style={style}/>;
+
         return (
             <div className={classes}>
                 {this.maybeRenderLeftElement()}
-                <input
-                    type="text"
-                    {...removeNonHTMLProps(this.props)}
-                    className={Classes.INPUT}
-                    ref={this.props.inputRef}
-                    style={style}
-                />
+                {element}
                 {this.maybeRenderRightElement()}
             </div>
         );
